@@ -2,5 +2,17 @@
 export default defineNuxtConfig({
   typescript: {
     shim: false
+  },
+  css: ['@/assets/styles.scss'],
+  modules: [
+    '@nuxtjs/device',
+    '@nuxt/image',
+    'nuxt-icon'
+  ],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {}
+    }
   }
 })
