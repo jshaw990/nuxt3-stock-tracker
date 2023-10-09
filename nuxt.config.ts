@@ -7,12 +7,7 @@ export default defineNuxtConfig({
   modules: [
     '@nuxtjs/device',
     '@nuxt/image',
-    'nuxt-icon'
-  ],
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {}
-    }
-  }
+    'nuxt-icon',
+    '@nuxtjs/tailwindcss'
+  ]
 })

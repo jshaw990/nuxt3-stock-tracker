@@ -21,9 +21,15 @@
     "vue"
   ],
   // Tailwind Support, see https://tailwindcss.nuxt.dev/tailwind/editor-support
-  "tailwindCSS.experimental.configFile": ".nuxt/tailwind.config.cjs",
+  // "tailwindCSS.experimental.configFile": ".nuxt/tailwind.config.cjs",
   "files.associations": {
     "*.css": "tailwindcss"
+  },
+  "tailwindCSS.includeLanguages": {
+    "html": "html",
+    "javascript": "javascript",
+    "css": "css",
+    "vue": "vue"
   },
   // Auto-complete `.value` attribute when volar is installed
   "volar.autoCompleteRefs": true,
