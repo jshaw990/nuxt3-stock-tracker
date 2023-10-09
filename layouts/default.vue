@@ -1,8 +1,14 @@
-<script lang="ts" setup></script>
+<script lang="ts" setup>
+</script>
 
 <template>
-  <div class="default-layout m-0 p-0">
+  <div
+    class="default-layout m-0 p-0"
+  >
     <StaticHeader />
-    <slot />
+    <StaticPageLayout>
+      <slot />
+    </StaticPageLayout>
+    <StaticFooter />
   </div>
 </template>
