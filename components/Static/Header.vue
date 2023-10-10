@@ -1,17 +1,23 @@
 <script lang="ts" setup>
+import { storeToRefs } from 'pinia'
+import { useSymbolStore } from '@/stores/symbol'
+
 const { data } = useAppConfig()
-const emit = defineEmits(['searchSymbol'])
+const store = useSymbolStore()
+
 const state = ref({
-  symbol: ''
+  searchTerm: ''
 })
 
+const { isLoaded, symbol } = storeToRefs(store)
+
 const handleClearSymbol = () => {
-  state.value.symbol = ''
+  state.value.searchTerm = ''
+  store.clear()
 }
 
 const handleSearchSymbol = () => {
-  console.log('searching !', state.value.symbol)
-  emit('searchSymbol', state.value.symbol)
+  store.set(state.value.searchTerm)
 }
 </script>
 
@@ -28,14 +34,14 @@ const handleSearchSymbol = () => {
         Search stock symbol
       </div>
       <input
-        v-model="state.symbol"
+        v-model="state.searchTerm"
         class="bg-zinc-800 text-center px-2 py-1 focus-visible:outline-none focus-within:outline-none focus-within:border-b-blue-800 border-b-2 w-20 uppercase"
-        :class="state.symbol.length > 0 ? 'mr-0' : 'mr-4'"
+        :class="state.searchTerm.length > 0 ? 'mr-0' : 'mr-4'"
         placeholder="TLSA"
         type="text"
         @keydown.enter="handleSearchSymbol"
       >
-      <template v-if="state.symbol.length > 0">
+      <template v-if="state.searchTerm.length > 0">
         <Icon name="ooui:clear" size="10px" @click="handleClearSymbol" />
       </template>
     </div>
