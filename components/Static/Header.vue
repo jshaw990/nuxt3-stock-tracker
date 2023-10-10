@@ -1,11 +1,17 @@
 <script lang="ts" setup>
 const { data } = useAppConfig()
+const emit = defineEmits(['searchSymbol'])
 const state = ref({
   symbol: ''
 })
 
 const handleClearSymbol = () => {
   state.value.symbol = ''
+}
+
+const handleSearchSymbol = () => {
+  console.log('searching !', state.value.symbol)
+  emit('searchSymbol', state.value.symbol)
 }
 </script>
 
@@ -27,6 +33,7 @@ const handleClearSymbol = () => {
         :class="state.symbol.length > 0 ? 'mr-0' : 'mr-4'"
         placeholder="TLSA"
         type="text"
+        @keydown.enter="handleSearchSymbol"
       >
       <template v-if="state.symbol.length > 0">
         <Icon name="ooui:clear" size="10px" @click="handleClearSymbol" />
