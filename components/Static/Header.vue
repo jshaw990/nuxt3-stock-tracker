@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-import { storeToRefs } from 'pinia'
+// import { storeToRefs } from 'pinia'
 import { useSymbolStore } from '@/stores/symbol'
 
 const { data } = useAppConfig()
@@ -9,15 +9,13 @@ const state = ref({
   searchTerm: ''
 })
 
-const { isLoaded, symbol } = storeToRefs(store)
-
 const handleClearSymbol = () => {
   state.value.searchTerm = ''
   store.clear()
 }
 
-const handleSearchSymbol = () => {
-  store.set(state.value.searchTerm)
+const handleSearchSymbol = async () => {
+  await store.set(state.value.searchTerm)
 }
 </script>
 

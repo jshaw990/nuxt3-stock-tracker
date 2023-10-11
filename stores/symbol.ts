@@ -1,21 +1,27 @@
 import { defineStore } from 'pinia'
+import useStockApi from '@/composables/useStockApi'
 
 export const useSymbolStore = defineStore('symbol', {
   state: () => ({
-    isLoaded: true,
-    symbol: 'AAPL'
+    data: {},
+    isLoaded: false,
+    symbol: ''
   }),
   actions: {
     clear () {
-      this.isLoaded = true
+      this.data = {}
       this.symbol = ''
+      this.isLoaded = true
     },
     loading () {
       this.isLoaded = false
     },
-    set (data: string) {
+    async set (symbol: string) {
+      this.isLoaded = false
+      this.symbol = symbol
+      const request = await useStockApi(symbol)
+      this.data = request
       this.isLoaded = true
-      this.symbol = data
     }
   },
   getters: {

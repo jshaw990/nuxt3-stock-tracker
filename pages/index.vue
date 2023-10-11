@@ -3,17 +3,21 @@ import { storeToRefs } from 'pinia'
 import { useSymbolStore } from '@/stores/symbol'
 
 const store = useSymbolStore()
-const { isLoaded, symbol } = storeToRefs(store)
+const { data, isLoaded } = storeToRefs(store)
 </script>
 
 <template>
   <div>
-    <StaticLoader :color="'#27272a'" :size="20" />
+    <!-- <StaticLoader :color="'#27272a'" :size="20" /> -->
     <div v-if="isLoaded">
-      {{ symbol }}
+      <div>{{ data.metaData.name }}</div>
+      <div class="text-xs">
+        {{ ' (' + data.metaData.exchangeCode }} : {{ data.metaData.ticker + ')' }}
+      </div>
+      <div>{{ data.metaData.description }}</div>
     </div>
     <div v-else>
-      <div>Loading</div>
+      <StaticLoader :color="'#27272a'" :size="20" />
     </div>
   </div>
 </template>
