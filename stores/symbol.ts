@@ -1,5 +1,6 @@
 import { defineStore } from 'pinia'
 import useStockApi from '@/composables/useStockApi'
+import updateUrl from '~/composables/updateUrl'
 
 export const useSymbolStore = defineStore('symbol', {
   state: () => ({
@@ -20,6 +21,7 @@ export const useSymbolStore = defineStore('symbol', {
       this.isLoaded = false
       this.symbol = symbol
       const request = await useStockApi(symbol)
+      updateUrl(symbol)
       this.data = request
       this.isLoaded = true
     }

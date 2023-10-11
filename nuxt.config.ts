@@ -1,8 +1,5 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  typescript: {
-    shim: false
-  },
   css: ['@/assets/styles.scss'],
   modules: [
     '@nuxt/image',
@@ -17,5 +14,17 @@ export default defineNuxtConfig({
       'defineStore', // import { defineStore } from 'pinia'
       ['defineStore', 'definePiniaStore'] // import { defineStore as definePiniaStore } from 'pinia'
     ]
+  },
+  runtimeConfig: {
+    private: {
+      apiKey: process.env.API_KEY
+    },
+    public: {
+      baseUrl: process.env.BASE_URL,
+      apiUrl: process.env.API_BASE_URL
+    }
+  },
+  typescript: {
+    shim: false
   }
 })

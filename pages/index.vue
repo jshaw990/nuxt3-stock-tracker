@@ -4,13 +4,23 @@ import { useSymbolStore } from '@/stores/symbol'
 
 const store = useSymbolStore()
 const { data, isLoaded } = storeToRefs(store)
+
+onMounted(async () => {
+  await store.set('ba')
+})
 </script>
 
 <template>
   <div>
-    <!-- <StaticLoader :color="'#27272a'" :size="20" /> -->
-    <div v-if="isLoaded">
-      <div>{{ data.metaData.name }}</div>
+    <div v-if="isLoaded" class="flex flex-col gap-2">
+      <div class="flex flex-row justify-between gap-2">
+        <h1 class="text-4xl overflow-x-clip">
+          {{ data.metaData.name }}
+        </h1>
+        <div :class="data.top.last > 5 ? 'text-2xl' : 'text-4xl'">
+          ${{ data.top.last }}
+        </div>
+      </div>
       <div class="text-xs">
         {{ ' (' + data.metaData.exchangeCode }} : {{ data.metaData.ticker + ')' }}
       </div>
