@@ -5,7 +5,7 @@ export default defineAppConfig({
   },
   author: {
     name: 'Jayden Shaw',
-    github: '',
+    github: 'https://github.com/jshaw990',
     portfolio: 'https://jaydenshaw.com/'
   }
 })
